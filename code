@@ -1,0 +1,192 @@
+#include<iostream>	
+#include<string>
+#include<fstream>
+#include<vector>
+#include<cstdlib>
+#include<Windows.h>
+using namespace std;
+
+class Animal
+{
+
+private:
+	int amount;
+	string weight;
+	string bodyGrowth;
+	string bodyHeight;
+	string animalType;
+	string animalClass;
+	string animalFamily;
+	string animalSpecies;
+
+public:
+	void Setamount(int x)
+	{
+		amount = x;
+	}
+	void Setweight(string x)
+	{
+		weight = x;
+	}
+	void SetbodyGrowth(string x)
+	{
+		bodyGrowth = x;
+	}
+	void SetbodyHeight(string x)
+	{
+		bodyHeight = x;
+	}
+	void SetanimalType(string x)
+	{
+		animalType = x;
+	}
+	void SetanimalClass(string x)
+	{
+		animalClass = x;
+	}
+	void SetanimalFamily(string x)
+	{
+		animalFamily = x;
+	}
+	void SetanimalSpecies(string x)
+	{
+		animalSpecies = x;
+	}
+
+
+
+	string Getweight()
+	{
+		return weight;
+	}
+	string GetbodyGrowth()
+	{
+		return bodyGrowth;
+	}
+	string GetbodyHeight()
+	{
+		return bodyHeight;
+	}
+	string GetanimalSpecies()
+	{
+		return animalSpecies;
+	}
+	string GetanimalFamily()
+	{
+		return animalFamily;
+	}
+	string GetanimalType()
+	{
+		return animalType;
+	}
+	string GetanimalClass()
+	{
+		return animalClass;
+	}
+	int Getamount()
+	{
+		return amount;
+	}
+};
+void menu()
+{
+	cout << "Input 1 to watch all the information of our ZOO!" << endl;
+	cout << "Input 2 to add new animals" << endl;
+	cout << "Input 3 to delete animals" << endl;
+	cout << "Input q to quit" << endl;
+
+}
+
+void addinfo(string filename, vector<Animal>  &data) {
+	ifstream fin(filename);
+	string str;
+	for (unsigned int i = 0; i < data.size(); i++) {
+		for (int j = 0; j < 9; j++)
+		{
+			getline(fin, str, '/');
+			switch (j)
+			{
+			case 0:data[i].SetanimalType(str); break;
+			case 1:data[i].SetanimalClass(str); break;
+			case 2:data[i].SetanimalFamily(str); break;
+			case 3:data[i].SetanimalSpecies(str); break;
+			case 4:data[i].Setweight(str); break;
+			case 5:data[i].SetbodyGrowth(str); break;
+			case 6:data[i].SetbodyHeight(str); break;
+			case 7:data[i].Setamount(stoi(str)); break;
+			case 8: break;
+			}
+		}
+	}
+	fin.close();
+}
+
+int aniumalCounter(string filename) {
+	ifstream fin(filename);
+	char *str = new char[1024];
+	int count = 0;
+	while (!fin.eof())
+	{
+		fin.getline(str, 1024, '\n');
+		count++;
+	}
+	delete[] str;
+	fin.close();
+	return count;
+}
+
+void outputVector(vector <Animal> vectr)
+{
+	for (unsigned i = 0; i < vectr.size(); i++)
+	{
+		cout << "\tТип: " << vectr[i].GetanimalType() << endl;
+		cout << "\tКласс: " << vectr[i].GetanimalClass() << endl;
+		cout << "\tСемейство: " << vectr[i].GetanimalFamily() << endl;
+		cout << "\tВид: " << vectr[i].GetanimalSpecies() << endl;
+		cout << "\tВес: " << vectr[i].Getweight() << endl;
+		cout << "\tРост: " << vectr[i].GetbodyGrowth() << endl;
+		cout << "\tДлинна: " << vectr[i].GetbodyHeight() << endl << endl;
+		cout << "\tКол-во: " << vectr[i].Getamount() << endl << endl;
+
+
+	}
+}
+void new_info()
+{
+	string info;
+	ofstream info_add("Животные.txt", ios::app);
+	cout << "Введите новую информацию!";
+	SetConsoleCP(1251);
+	getline(cin,info);
+	info_add << endl << info;
+	info_add.close();
+	SetConsoleCP(866);
+}
+
+
+int main()
+
+{
+	setlocale(LC_ALL, "ru");
+	int count = aniumalCounter("Животные.txt");
+	vector <Animal> data(count);
+	addinfo("Животные.txt", data);
+	char choise;
+	while (true)
+	{
+		menu();
+		cin >> choise;
+		system("cls");
+		switch (choise)
+		{
+		case '1':outputVector(data); break;
+		case '2':new_info(); break;
+		case '3': break;
+		case 'q': return 0;
+
+		}
+	}
+
+}
+
+

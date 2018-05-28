@@ -139,14 +139,14 @@ void outputVector(vector <Animal> vectr)
 {
 	for (unsigned i = 0; i < vectr.size(); i++)
 	{
-		cout << "\tТип: " << vectr[i].GetanimalType() << endl;
-		cout << "\tКласс: " << vectr[i].GetanimalClass() << endl;
-		cout << "\tСемейство: " << vectr[i].GetanimalFamily() << endl;
-		cout << "\tВид: " << vectr[i].GetanimalSpecies() << endl;
-		cout << "\tВес: " << vectr[i].Getweight() << endl;
-		cout << "\tРост: " << vectr[i].GetbodyGrowth() << endl;
-		cout << "\tДлинна: " << vectr[i].GetbodyHeight() << endl << endl;
-		cout << "\tКол-во: " << vectr[i].Getamount() << endl << endl;
+		cout << "\tType: " << vectr[i].GetanimalType() << endl;
+		cout << "\tClass: " << vectr[i].GetanimalClass() << endl;
+		cout << "\tFamily: " << vectr[i].GetanimalFamily() << endl;
+		cout << "\tspecies: " << vectr[i].GetanimalSpecies() << endl;
+		cout << "\tWeight: " << vectr[i].Getweight() << endl;
+		cout << "\tBody Height: " << vectr[i].GetbodyGrowth() << endl;
+		cout << "\tBody lenght: " << vectr[i].GetbodyHeight() << endl << endl;
+		cout << "\tAmount: " << vectr[i].Getamount() << endl << endl;
 
 
 	}
@@ -154,10 +154,10 @@ void outputVector(vector <Animal> vectr)
 void new_info()
 {
 	string info;
-	ofstream info_add("Животные.txt", ios::app);
-	cout << "Введите новую информацию!";
-	getline(cin,info);
-	info_add << endl << info;
+	ofstream info_add("Animals.txt", ios::app);
+	cout << "Input new information!";
+	getline(cin, info);
+	info_add << info;
 	info_add.close();
 }
 
@@ -166,9 +166,9 @@ int main()
 
 {
 	setlocale(LC_ALL, "ru");
-	int count = aniumalCounter("Животные.txt");
+	int count = aniumalCounter("Animals.txt");
 	vector <Animal> data(count);
-	addinfo("Животные.txt", data);
+	addinfo("Animals.txt", data);
 	char choise;
 	while (true)
 	{

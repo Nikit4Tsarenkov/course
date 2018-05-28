@@ -114,7 +114,7 @@ void addinfo(string filename, vector<Animal>  &data) {
 			case 5:data[i].SetbodyGrowth(str); break;
 			case 6:data[i].SetbodyHeight(str); break;
 			case 7:data[i].Setamount(stoi(str)); break;
-			case 8: break;
+			case 8:break;
 			}
 		}
 	}
@@ -156,11 +156,9 @@ void new_info()
 	string info;
 	ofstream info_add("Животные.txt", ios::app);
 	cout << "Введите новую информацию!";
-	SetConsoleCP(1251);
 	getline(cin,info);
 	info_add << endl << info;
 	info_add.close();
-	SetConsoleCP(866);
 }
 
 

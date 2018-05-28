@@ -151,15 +151,31 @@ void outputVector(vector <Animal> vectr)
 
 	}
 }
-void new_info()
-{
-	string info;
-	ofstream info_add("Animals.txt", ios::app);
-	cout << "Input new information!";
-	getline(cin, info);
-	info_add << info;
-	info_add.close();
-}
+void input_info(string &animalType, string &animalClass, string &animalFamily, string &animalSpecies, string &Weight, string &BodyHeight, string &BodyGrowth, int &amount)
+	{
+		cout << "Input Type: "; cin >> animalType;
+		cout << "Input Class: "; cin >> animalClass;
+		cout << "Input Family: "; cin >> animalFamily;
+		cout << "Input Species: "; cin >> animalSpecies;
+		cout << "Input Weight: "; cin >> Weight;
+		cout << "Input Body Height: "; cin >> BodyHeight;
+		cout << "Input Body lenght: "; cin >> BodyGrowth;
+		cout << "Input amout of species: "; cin >> amount;
+	}
+
+//void addData(vector<Animal>&vectro, string filename) {
+//	int amout;
+//	string animalType, animalClass, animalFamily, animalSpecies, weight, bodyGrowth, bodyHeight;
+//	input_info(animalType, animalClass, animalFamily, animalSpecies, weight, bodyGrowth, bodyHeight);
+//	if (checkDataByMonth(year, month, vectro) == true) {
+//		cout << "Data of " << year << "-" << month << " already entered\n";
+//	}
+//	else {
+//		inputMonthInformation(salary, enviroment, taxes, food, others);
+//		vectro.push_back(userdata(year, month, salary, enviroment, taxes, food, others));
+//		refreshUserdataFile(Vect, filename);
+//	}
+//}
 
 
 int main()
@@ -178,7 +194,7 @@ int main()
 		switch (choise)
 		{
 		case '1':outputVector(data); break;
-		case '2':new_info(); break;
+		case '2': break;
 		case '3': break;
 		case 'q': return 0;
 

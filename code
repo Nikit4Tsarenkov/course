@@ -6,51 +6,59 @@
 #include<Windows.h>
 using namespace std;
 
-class Animal
+class Animals
 {
 
 private:
-	int amount;
 	string weight;
-	string bodyGrowth;
-	string bodyHeight;
-	string animalType;
-	string animalClass;
-	string animalFamily;
-	string animalSpecies;
+	string height;
+	string length;
+	string type;
+	string c1ass;
+	string family;
+	string species;
 
 public:
-	void Setamount(int x)
+	Animals()
+	{ }
+	Animals(string type0, string c1ass0, string family0, string species0, string weight0, string length0, string height0)
 	{
-		amount = x;
+		type = type0;
+		c1ass = c1ass0;
+		family = family0;
+		species = species0;
+		weight = weight0;
+		length = length0;
+		height = height0;
 	}
+	
 	void Setweight(string x)
 	{
 		weight = x;
 	}
-	void SetbodyGrowth(string x)
+	void Setheight(string x)
 	{
-		bodyGrowth = x;
+		height = x;
 	}
-	void SetbodyHeight(string x)
+	void Setlength(string x)
 	{
-		bodyHeight = x;
+		length = x;
 	}
-	void SetanimalType(string x)
+	void Settype(string x)
 	{
-		animalType = x;
+		type = x;
 	}
-	void SetanimalClass(string x)
+	void Setc1ass(string x)
 	{
-		animalClass = x;
+		c1ass = x;
 	}
-	void SetanimalFamily(string x)
+	void Setfamily(string x)
 	{
-		animalFamily = x;
+		family = x;
 	}
-	void SetanimalSpecies(string x)
+	void Setspecies(string x)
 	{
-		animalSpecies = x;
+		species = x;
 	}
 
 
@@ -59,34 +67,31 @@ public:
 	{
 		return weight;
 	}
-	string GetbodyGrowth()
+	string Getheight()
 	{
-		return bodyGrowth;
+		return height;
 	}
-	string GetbodyHeight()
+	string Getlength()
 	{
-		return bodyHeight;
+		return length;
 	}
-	string GetanimalSpecies()
+	string Getspecies()
 	{
-		return animalSpecies;
+		return species;
 	}
-	string GetanimalFamily()
+	string Getfamily()
 	{
-		return animalFamily;
+		return family;
 	}
-	string GetanimalType()
+	string Gettype()
 	{
-		return animalType;
+		return type;
 	}
-	string GetanimalClass()
+	string Getc1ass()
 	{
-		return animalClass;
+		return c1ass;
 	}
-	int Getamount()
-	{
-		return amount;
-	}
+	
 };
 void menu()
 {
@@ -97,24 +102,23 @@ void menu()
 
 }
 
-void addinfo(string filename, vector<Animal>  &data) {
+void addinfo(string filename, vector<Animals>  &data) {
 	ifstream fin(filename);
 	string str;
 	for (unsigned int i = 0; i < data.size(); i++) {
-		for (int j = 0; j < 9; j++)
+		for (int j = 0; j < 8; j++)
 		{
 			getline(fin, str, '/');
 			switch (j)
 			{
-			case 0:data[i].SetanimalType(str); break;
-			case 1:data[i].SetanimalClass(str); break;
-			case 2:data[i].SetanimalFamily(str); break;
-			case 3:data[i].SetanimalSpecies(str); break;
+			case 0:data[i].Settype(str); break;
+			case 1:data[i].Setc1ass(str); break;
+			case 2:data[i].Setfamily(str); break;
+			case 3:data[i].Setspecies(str); break;
 			case 4:data[i].Setweight(str); break;
-			case 5:data[i].SetbodyGrowth(str); break;
-			case 6:data[i].SetbodyHeight(str); break;
-			case 7:data[i].Setamount(stoi(str)); break;
-			case 8:break;
+			case 5:data[i].Setheight(str); break;
+			case 6:data[i].Setlength(str); break;
+			case 7:break;
 			}
 		}
 	}
@@ -127,7 +131,7 @@ int aniumalCounter(string filename) {
 	int count = 0;
 	while (!fin.eof())
 	{
-		fin.getline(str, 1024, '\n');
+		fin.getline(str, 1024, '/n');
 		count++;
 	}
 	delete[] str;
@@ -135,55 +139,88 @@ int aniumalCounter(string filename) {
 	return count;
 }
 
-void outputVector(vector <Animal> vectr)
+void outputvector(vector<Animals> vect)
 {
-	for (unsigned i = 0; i < vectr.size(); i++)
+	for (unsigned i = 0; i < vect.size(); i++)
 	{
-		cout << "\tType: " << vectr[i].GetanimalType() << endl;
-		cout << "\tClass: " << vectr[i].GetanimalClass() << endl;
-		cout << "\tFamily: " << vectr[i].GetanimalFamily() << endl;
-		cout << "\tspecies: " << vectr[i].GetanimalSpecies() << endl;
-		cout << "\tWeight: " << vectr[i].Getweight() << endl;
-		cout << "\tBody Height: " << vectr[i].GetbodyGrowth() << endl;
-		cout << "\tBody lenght: " << vectr[i].GetbodyHeight() << endl << endl;
-		cout << "\tAmount: " << vectr[i].Getamount() << endl << endl;
-
-
+		cout << "\ttype: " << vect[i].Gettype() << endl;
+		cout << "\tclass: " << vect[i].Getc1ass() << endl;
+		cout << "\tfamily: " << vect[i].Getfamily() << endl;
+		cout << "\tspecies: " << vect[i].Getspecies() << endl;
+		cout << "\tWeight: " << vect[i].Getweight() << endl;
+		cout << "\tbody Height: " << vect[i].Getheight() << endl;
+		cout << "\tbody lenght: " << vect[i].Getlength() << endl << endl;
+		
 	}
 }
-void input_info(string &animalType, string &animalClass, string &animalFamily, string &animalSpecies, string &Weight, string &BodyHeight, string &BodyGrowth, int &amount)
-	{
-		cout << "Input Type: "; cin >> animalType;
-		cout << "Input Class: "; cin >> animalClass;
-		cout << "Input Family: "; cin >> animalFamily;
-		cout << "Input Species: "; cin >> animalSpecies;
-		cout << "Input Weight: "; cin >> Weight;
-		cout << "Input Body Height: "; cin >> BodyHeight;
-		cout << "Input Body lenght: "; cin >> BodyGrowth;
-		cout << "Input amout of species: "; cin >> amount;
+void input_all_info(string &type, string &c1ass, string &family, string &species, string &weight, string &length, string &height)
+{
+	cout << "Input type: "; cin >> type;
+	cout << "Input class: "; cin >> c1ass;
+	cout << "Input family: "; cin >> family;
+	cout << "Input species: "; cin >> species;
+	cout << "Input weight: "; cin >> weight;
+	cout << "Input body height: "; cin >> height;
+	cout << "Input body lenght: "; cin >> length;
+}
+
+void update_animal_data(vector<Animals>vect, string filename) {
+	ofstream fout(filename, ios::out);
+	for (unsigned int i = 0; i < vect.size(); i++) {
+		fout << vect[i].Gettype() << " " << vect[i].Getc1ass() << " " << vect[i].Getfamily() << " " << vect[i].Getspecies()
+			<< " " << vect[i].Getweight() << " " << vect[i].Getheight() << " " << vect[i].Getlength();
+		if (i != vect.size() - 1)fout << endl;
 	}
+	fout.close();
+}
+bool check_info(string type, string c1ass, string family, string species, string weight, string length, string height, vector<Animals>vect) {
+	for (unsigned int i = 0; i < vect.size(); i++) {
+		if (type == vect[i].Gettype() && c1ass == vect[i].Getc1ass() && family == vect[i].Getfamily() && species == vect[i].Getspecies() && weight == vect[i].Getweight()
+			&& height == vect[i].Getweight() && length == vect[i].Getlength())return true;
+	}
+	return false;
+}
+void add_data(vector<Animals>&vect, string filename) {
+	int amount;
+	string type, c1ass, family, species, weight, height, length;
+	input_all_info(type, c1ass, family, species, weight, height, length);
+	if (check_info(type, c1ass, family, species, weight, height, length, vect) == true)
+	{
+		cout << "information about this " << species << " already exist\n";
+	}
+	else
+	{
+		input_all_info(type, c1ass, family, species, weight, height, length);
+		vect.push_back(Animals(type, c1ass, family, species, weight, height, length));
+		update_animal_data(vect, filename);
+	}
+}
 
-//void addData(vector<Animal>&vectro, string filename) {
-//	int amout;
-//	string animalType, animalClass, animalFamily, animalSpecies, weight, bodyGrowth, bodyHeight;
-//	input_info(animalType, animalClass, animalFamily, animalSpecies, weight, bodyGrowth, bodyHeight);
-//	if (checkDataByMonth(year, month, vectro) == true) {
-//		cout << "Data of " << year << "-" << month << " already entered\n";
-//	}
-//	else {
-//		inputMonthInformation(salary, enviroment, taxes, food, others);
-//		vectro.push_back(userdata(year, month, salary, enviroment, taxes, food, others));
-//		refreshUserdataFile(Vect, filename);
-//	}
-//}
+int Choose_an_animal(string type, string c1ass, string family, string species, string weight, string length, string height, vector<Animals>vect) {
+	for (unsigned int i = 0; i < vect.size(); i++) {
+		if (type == vect[i].Gettype() && c1ass == vect[i].Getc1ass() && family == vect[i].Getfamily() && species == vect[i].Getspecies() && weight == vect[i].Getweight()
+			&& height == vect[i].Getweight() && length == vect[i].Getlength())return true;
+	} return -1;
+}
 
+void del_data(vector<Animals>&vect, string filename) {
+	string type, c1ass, family, species, weight, height, length;
+	input_all_info(type, c1ass, family, species, weight, height, length);
+	if(check_info(type, c1ass, family, species, weight, height, length, vect) == false) {
+		cout << "There is no such " << species << "'s in our zoo\n";
+	}
+	else {
+		int index = Choose_an_animal(type, c1ass, family, species, weight, height, length, vect);
+		vect.erase(vect.begin() + index);
+	     }
+}
 
 int main()
 
 {
 	setlocale(LC_ALL, "ru");
 	int count = aniumalCounter("Animals.txt");
-	vector <Animal> data(count);
+	vector <Animals> data(count);
 	addinfo("Animals.txt", data);
 	char choise;
 	while (true)
@@ -193,14 +230,12 @@ int main()
 		system("cls");
 		switch (choise)
 		{
-		case '1':outputVector(data); break;
-		case '2': break;
-		case '3': break;
+		case '1':outputvector(data); break;
+		case '2':add_data(data, "Animals.txt"); break;
+	        case '3':del_data(data, "Animals.txt"); break;
 		case 'q': return 0;
 
 		}
 	}
 
 }
-
-
